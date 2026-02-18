@@ -600,11 +600,11 @@ nav .nav-links a:hover { color: var(--green); text-decoration: none; }
         <div class="arch-layer">
           <div class="arch-layer-label">Layer 3 // Services</div>
           <div class="arch-nodes">
-            <div class="arch-node" data-info="Primary data store. Workflow state, automation logs, credential vault. Encrypted at rest via gp3.">&#9673; PostgreSQL 16 <span class="port">:5432</span></div>
-            <div class="arch-node" data-info="Security orchestration hub. 17 integrated services. Webhook-driven. 99.2% success rate across 700+ executions.">&#9673; n8n SOAR <span class="port">:5678</span></div>
-            <div class="arch-node" data-info="Self-hosted LLM inference. Qwen 2.5 7B (4-bit quantized). Zero external API costs. Fully local processing.">&#9673; Ollama / Qwen <span class="port">:11434</span></div>
-            <div class="arch-node" data-info="On-premise voice transcription. Faster-Whisper model. Privacy-first: no audio leaves the server.">&#9673; Whisper STT <span class="port">:8000</span></div>
-            <div class="arch-node" data-info="Claude AI gateway. Proxied through authenticated local endpoint. Rate-limited. API key rotation enforced.">&#9673; OpenClaw AI <span class="port">:18789</span></div>
+            <div class="arch-node" data-info="Primary data store. Workflow state, automation logs, credential vault. Encrypted at rest via gp3.">&#9673; PostgreSQL 16 <span class="port">:5400</span></div>
+            <div class="arch-node" data-info="Security orchestration hub. 17 integrated services. Webhook-driven. 99.2% success rate across 700+ executions.">&#9673; n8n SOAR <span class="port">:5600</span></div>
+            <div class="arch-node" data-info="Self-hosted LLM inference. Qwen 2.5 7B (4-bit quantized). Zero external API costs. Fully local processing.">&#9673; Ollama / Qwen <span class="port">:11400</span></div>
+            <div class="arch-node" data-info="On-premise voice transcription. Faster-Whisper model. Privacy-first: no audio leaves the server.">&#9673; Whisper STT <span class="port">:8200</span></div>
+            <div class="arch-node" data-info="Claude AI gateway. Proxied through authenticated local endpoint. Rate-limited. API key rotation enforced.">&#9673; OpenClaw AI <span class="port">:18700</span></div>
           </div>
         </div>
         <div style="text-align:center;margin-top:16px;">
@@ -1174,11 +1174,11 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
     stack: function() {
       return [
         {t:'gold', m:'Production Stack:'},
-        {t:'output', m:'  PostgreSQL 16    :5432   Database'},
-        {t:'output', m:'  n8n SOAR         :5678   Orchestration'},
-        {t:'output', m:'  Ollama/Qwen      :11434  AI Inference'},
-        {t:'output', m:'  Whisper STT      :8000   Voice'},
-        {t:'output', m:'  OpenClaw AI      :18789  Agent Gateway'},
+        {t:'output', m:'  PostgreSQL 16    :5400   Database'},
+        {t:'output', m:'  n8n SOAR         :5600   Orchestration'},
+        {t:'output', m:'  Ollama/Qwen      :11400  AI Inference'},
+        {t:'output', m:'  Whisper STT      :8200   Voice'},
+        {t:'output', m:'  OpenClaw AI      :18700  Agent Gateway'},
         {t:'output', m:'  Cloudflare Tunnel TLS    Zero Trust Access'}
       ];
     },

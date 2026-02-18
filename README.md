@@ -1,6 +1,6 @@
 # Emmanuel Tigoue — Security Engineer Portfolio
 
-[![Live Site](https://img.shields.io/badge/Site-Live-00FF41?style=flat-square)](https://etcodin.github.io/portfolio/)
+[![Live Site](https://img.shields.io/badge/Site-Live-00FF41?style=flat-square)](https://et-sec.github.io/portfolio/)
 
 Interactive portfolio showcasing security engineering work, certifications, and technical capabilities.
 
@@ -20,8 +20,8 @@ Single `index.html` — all CSS and JS inline. Zero dependencies. Zero build ste
 
 ## Links
 
-- **Live:** [etcodin.github.io/portfolio](https://etcodin.github.io/portfolio/)
-- **Project Repo:** [cyber-squire1](https://github.com/ETcodin/cyber-squire1)
+- **Live:** [et-sec.github.io/portfolio](https://et-sec.github.io/portfolio/)
+- **Project Repo:** [cyber-squire1](https://github.com/et-sec/cyber-squire1)
 - **LinkedIn:** [Emmanuel Tigoue](https://www.linkedin.com/in/emmanuel-tigoue-672378307)
 
 ---
