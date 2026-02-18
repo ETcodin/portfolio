@@ -145,6 +145,13 @@ nav.scrolled { box-shadow: 0 2px 20px rgba(0,255,65,0.1); }
 .cert-card .hud:hover { border-color: var(--green); box-shadow: 0 0 12px rgba(0,255,65,0.15); }
 .cert-badge { font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 700; letter-spacing: 1px; padding: 3px 8px; border: 1px solid; display: inline-block; margin-bottom: 12px; }
 .badge-cleared { color: var(--green); border-color: var(--green); }
+.badge-blue { color: #2196F3; border-color: #2196F3; }
+.cert-card-blue .hud { transition: border-color 0.3s, box-shadow 0.3s; }
+.cert-card-blue .hud:hover { border-color: #2196F3; box-shadow: 0 0 12px rgba(33,150,243,0.2); }
+.cert-card-blue .hud::before { border-color: #2196F3; }
+.cert-card-blue .hud::after { border-color: #2196F3; }
+.cert-card-blue .hud .bl { border-color: #2196F3; }
+.cert-card-blue .hud .br { border-color: #2196F3; }
 .cert-card h3 { font-size: 18px; font-weight: 700; margin-bottom: 8px; }
 .cert-card .cert-meta { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--light); margin-bottom: 4px; }
 .cert-card .cert-note { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--green); margin-top: 12px; opacity: 0.7; }
@@ -200,7 +207,45 @@ nav .nav-links a:hover { color: var(--green); text-decoration: none; }
 }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition-duration: 0.01ms !important; }
+  .boot-overlay { display: none !important; }
 }
+
+/* BOOT SEQUENCE */
+.boot-overlay {
+  position: fixed; inset: 0; z-index: 9999; background: var(--void);
+  display: flex; align-items: center; justify-content: center; flex-direction: column;
+  transition: opacity 0.6s ease;
+}
+.boot-overlay.fade-out { opacity: 0; pointer-events: none; }
+.boot-line {
+  font-family: 'JetBrains Mono', monospace; font-size: clamp(14px, 2.5vw, 18px);
+  color: var(--green); letter-spacing: 2px; opacity: 0; white-space: nowrap;
+}
+.boot-line.show { opacity: 1; }
+.boot-line .cursor { animation: blink 0.6s step-end infinite; }
+
+/* DATA FLOW ANIMATION ON CONNECTORS */
+.arch-connector { position: relative; overflow: visible; }
+.arch-connector::after {
+  content: ''; position: absolute; left: 50%; top: -4px;
+  width: 6px; height: 6px; background: var(--green); border-radius: 50%;
+  transform: translateX(-50%);
+  animation: dataFlow 1.8s ease-in-out infinite;
+  box-shadow: 0 0 6px rgba(0,255,65,0.6);
+}
+@keyframes dataFlow {
+  0% { top: -4px; opacity: 0; }
+  20% { opacity: 1; }
+  80% { opacity: 1; }
+  100% { top: calc(100% - 2px); opacity: 0; }
+}
+
+/* FOOTER STATUS */
+.footer-status {
+  font-family: 'JetBrains Mono', monospace; font-size: 11px;
+  color: var(--light); margin-top: 12px; letter-spacing: 1px;
+}
+.footer-status .online { color: var(--green); }
 </style>
 <script type="application/ld+json">
 {
@@ -218,6 +263,12 @@ nav .nav-links a:hover { color: var(--green); text-decoration: none; }
 </script>
 </head>
 <body>
+
+<!-- BOOT SEQUENCE OVERLAY -->
+<div class="boot-overlay" id="boot-overlay">
+  <div class="boot-line" id="boot-line-1">ESTABLISHING SECURE CONNECTION<span class="cursor">&#9608;</span></div>
+  <div class="boot-line" id="boot-line-2" style="margin-top:12px;color:var(--gold);">VERIFIED. ACCESS GRANTED.</div>
+</div>
 
 <nav>
   <div class="nav-inner">
@@ -240,7 +291,7 @@ nav .nav-links a:hover { color: var(--green); text-decoration: none; }
     <h1><span class="icon">&#9673;</span> <span class="glitch-hover">EMMANUEL TIGOUE</span></h1>
     <div class="tagline" id="typed-tagline"></div>
     <div class="sub-tagline">CASP+ (SecurityX) &bull; SSCP &bull; CCNA &bull; DoD 8140 IAT/IAM III</div>
-    <p class="intro">Security Engineer delivering AI-augmented cloud security platforms for 12 clients on AWS. Integrates LLM-driven automation with SOAR orchestration for threat detection and incident response. Reduced attack surface by 85% through Zero Trust architecture.</p>
+    <p class="intro">Security Engineer delivering AI-augmented cloud security platforms for enterprise clients on AWS. Integrates LLM-driven automation with SOAR orchestration for threat detection and incident response. Reduced attack surface by 85% through Zero Trust architecture.</p>
     <div class="hero-buttons">
       <a href="EmmanuelTigoue_SE.pdf" download class="btn btn-primary">Download Resume</a>
       <a href="https://github.com/ETcodin/cyber-squire1" target="_blank" rel="noopener noreferrer" class="btn btn-outline">View on GitHub</a>
@@ -258,7 +309,7 @@ nav .nav-links a:hover { color: var(--green); text-decoration: none; }
       <div class="line"></div>
     </div>
     <p class="reveal" style="color:#ccc;max-width:720px;margin-bottom:32px;line-height:1.8;">
-      CoreDirective Automation Engine &mdash; a production security platform on AWS serving 12 clients.
+      CoreDirective Automation Engine &mdash; a production security platform on AWS serving enterprise clients.
       5-service containerized stack, 17 integrated services, zero external AI costs.
       Every metric below is verifiable in the <a href="https://github.com/ETcodin/cyber-squire1" target="_blank" rel="noopener noreferrer">public repository</a>.
     </p>
@@ -398,6 +449,14 @@ nav .nav-links a:hover { color: var(--green); text-decoration: none; }
         <div class="cert-note">Click to verify on Credly</div>
       </div></a></div>
 
+      <div class="cert-card cert-card-blue stagger-card"><div class="hud"><span class="bl"></span><span class="br"></span>
+        <span class="cert-badge badge-blue">&#9673; IN PROGRESS</span>
+        <h3>AWS Certified Security &mdash; Specialty</h3>
+        <div class="cert-meta">Cloud Security Architecture</div>
+        <div class="cert-meta">AWS-Native Threat Detection</div>
+        <div class="cert-note" style="color:#2196F3;">Target 2026</div>
+      </div></div>
+
     </div>
   </div>
 </section>
@@ -478,11 +537,24 @@ nav .nav-links a:hover { color: var(--green); text-decoration: none; }
   <div class="container">
     <div class="logo"><span style="color:var(--green);">&#9673;</span> EMMANUEL TIGOUE</div>
     <div class="copy" style="font-family:'JetBrains Mono',monospace;">Security Engineer // 2026</div>
+    <div class="footer-status"><span class="online">&#9673;</span> SYSTEM STATUS: OPERATIONAL // LAST DEPLOY: 2026-02-18</div>
     <a href="#" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;" style="display:inline-block;margin-top:16px;font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--green);letter-spacing:2px;text-transform:uppercase;text-decoration:none;cursor:pointer;">&#9650; BACK TO TOP</a>
   </div>
 </footer>
 
 <script>
+// BOOT SEQUENCE
+(function() {
+  var overlay = document.getElementById('boot-overlay');
+  if (!overlay) return;
+  var line1 = document.getElementById('boot-line-1');
+  var line2 = document.getElementById('boot-line-2');
+  setTimeout(function() { line1.classList.add('show'); }, 200);
+  setTimeout(function() { line2.classList.add('show'); }, 1800);
+  setTimeout(function() { overlay.classList.add('fade-out'); }, 2800);
+  setTimeout(function() { overlay.remove(); }, 3400);
+})();
+
 // Smooth scroll for nav links
 document.querySelectorAll('a[href^="#"]').forEach(a => {
   a.addEventListener('click', e => {
