@@ -550,7 +550,7 @@ nav .nav-links a:hover { color: var(--green); text-decoration: none; }
     </div>
     <p class="reveal" style="color:#ccc;max-width:720px;margin-bottom:32px;line-height:1.8;">
       CoreDirective Automation Engine &mdash; a production security platform on AWS serving enterprise clients.
-      5-service containerized stack, 17 integrated services, zero external AI costs.
+      6-service containerized stack, 17 integrated services, zero external AI costs.
       Every metric below is verifiable in the <a href="https://github.com/et-sec/cyber-squire1" target="_blank" rel="noopener noreferrer">public repository</a>.
     </p>
 
@@ -835,8 +835,8 @@ nav .nav-links a:hover { color: var(--green); text-decoration: none; }
         </div>
       </div>
       <ul class="exp-bullets">
-        <li><strong>BBA Computer Information Systems</strong> &mdash; May 2026<br>Concentration in Cybersecurity</li>
-        <li><strong>BBA Business Economics</strong> &mdash; May 2025</li>
+        <li><strong>B.B.A. Computer Information Systems</strong> &mdash; May 2026<br>Concentration in Cybersecurity</li>
+        <li><strong>B.B.A. Business Economics</strong> &mdash; May 2025</li>
         <li><strong>A.S. Business Administration</strong> &mdash; May 2025</li>
       </ul>
     </div>
@@ -889,8 +889,10 @@ nav .nav-links a:hover { color: var(--green); text-decoration: none; }
 // Smooth scroll for nav links
 document.querySelectorAll('a[href^="#"]').forEach(a => {
   a.addEventListener('click', e => {
+    var href = a.getAttribute('href');
+    if (!href || href === '#') return;
     e.preventDefault();
-    const target = document.querySelector(a.getAttribute('href'));
+    var target = document.querySelector(href);
     if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
     document.querySelector('.nav-links').classList.remove('open');
   });
