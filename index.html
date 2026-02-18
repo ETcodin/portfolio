@@ -345,7 +345,7 @@ nav .nav-links a:hover { color: var(--green); text-decoration: none; }
 
 /* RADAR CHART */
 .radar-container { display: flex; justify-content: center; margin: 32px 0; }
-#radar-chart { width: 100%; max-width: 340px; }
+#radar-chart { width: 100%; max-width: 420px; }
 #radar-chart svg { width: 100%; height: auto; }
 .radar-fill { transform-origin: 150px 150px; }
 .radar-fill.animate { animation: radarGrow 1.2s ease-out forwards; }
@@ -836,7 +836,21 @@ nav .nav-links a:hover { color: var(--green); text-decoration: none; }
       </div>
       <ul class="exp-bullets">
         <li>Concentration in cybersecurity and enterprise network infrastructure</li>
-        <li>GPA: <span class="m">3.7</span></li>
+        <li>GPA: <span class="m">3.7</span> &bull; Dean's List</li>
+      </ul>
+    </div>
+    <div class="exp-entry reveal">
+      <div class="exp-header">
+        <div>
+          <span class="exp-company">Georgia State University</span>
+          <span class="exp-role"> &mdash; A.S. Business Economics</span>
+        </div>
+        <div>
+          <span class="exp-date">Atlanta, GA &bull; May 2025</span>
+        </div>
+      </div>
+      <ul class="exp-bullets">
+        <li>Foundation in microeconomics, financial analysis, and quantitative methods</li>
       </ul>
     </div>
   </div>
@@ -853,7 +867,7 @@ nav .nav-links a:hover { color: var(--green); text-decoration: none; }
     <p class="reveal" style="color:var(--light);max-width:500px;margin-bottom:8px;">Open to Security Engineer roles. Available for interviews and technical discussions.</p>
     <div class="contact-links">
       <a href="https://www.linkedin.com/in/emmanuel-tigoue-672378307" target="_blank" rel="noopener noreferrer" class="contact-link">&#9654; LinkedIn</a>
-      <a href="https://github.com/ETcodin" target="_blank" rel="noopener noreferrer" class="contact-link">&#9654; GitHub</a>
+      <a href="https://github.com/ETcodin/cyber-squire1" target="_blank" rel="noopener noreferrer" class="contact-link">&#9654; GitHub</a>
       <a href="mailto:emmanueltigoue@gmail.com" class="contact-link" style="border-color:var(--green);">&#9654; Email</a>
       <a href="EmmanuelTigoue_SE.pdf" download class="contact-link">&#9654; Resume (PDF)</a>
       <button class="copy-link-btn" id="copy-link-btn" onclick="navigator.clipboard.writeText('https://etcodin.github.io/portfolio/').then(function(){var b=document.getElementById('copy-link-btn');b.textContent='\u2713 LINK SECURED';b.classList.add('copied');setTimeout(function(){b.textContent='\u25B6 Copy Link';b.classList.remove('copied');},2000);})">&#9654; Copy Link</button>
@@ -1334,9 +1348,8 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
         done.add(entry.target);
         var el = entry.target;
         var text = el.getAttribute('data-text');
-        // Wait for the parent reveal-left animation to finish (0.6s) + buffer
+        // Wait for the parent reveal-left animation to finish (0.6s)
         setTimeout(function() {
-          el.textContent = '';
           el.innerHTML = '<span class="tw-cursor"></span>';
           var span = el.querySelector('.tw-cursor');
           var i = 0;
@@ -1350,12 +1363,13 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
             }
           }
           type();
-        }, 800);
+        }, 600);
       }
     });
   }, { threshold: 0.3 });
   headers.forEach(function(h) {
     h.setAttribute('data-text', h.textContent);
+    h.textContent = '';
     obs.observe(h);
   });
 })();
