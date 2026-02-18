@@ -1325,37 +1325,47 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
 })();
 
 // TYPEWRITER SECTION HEADERS
-// Waits for reveal-left fade-in (0.6s) to complete before typing
+// Waits for parent reveal-left to get .visible before typing
 (function() {
   var headers = document.querySelectorAll('.section-header h2');
   var done = new Set();
+  headers.forEach(function(h) {
+    h.setAttribute('data-text', h.textContent);
+  });
   var obs = new IntersectionObserver(function(entries) {
     entries.forEach(function(entry) {
       if (entry.isIntersecting && !done.has(entry.target)) {
         done.add(entry.target);
         var el = entry.target;
         var text = el.getAttribute('data-text');
-        // Wait for the parent reveal-left animation to finish (0.6s)
-        setTimeout(function() {
-          el.innerHTML = '<span class="tw-cursor"></span>';
-          var span = el.querySelector('.tw-cursor');
-          var i = 0;
-          function type() {
-            if (i < text.length) {
-              span.textContent = text.substring(0, i + 1);
-              i++;
-              setTimeout(type, 50);
-            } else {
-              setTimeout(function() { span.classList.remove('tw-cursor'); }, 1500);
-            }
+        var parent = el.closest('.section-header');
+        function waitForReveal() {
+          if (parent && !parent.classList.contains('visible')) {
+            requestAnimationFrame(waitForReveal);
+            return;
           }
-          type();
-        }, 600);
+          // Parent is visible — wait for slide-in to finish (0.6s) then type
+          setTimeout(function() {
+            el.innerHTML = '<span class="tw-cursor"></span>';
+            var span = el.querySelector('.tw-cursor');
+            var i = 0;
+            function type() {
+              if (i < text.length) {
+                span.textContent = text.substring(0, i + 1);
+                i++;
+                setTimeout(type, 50);
+              } else {
+                setTimeout(function() { span.classList.remove('tw-cursor'); }, 1500);
+              }
+            }
+            type();
+          }, 650);
+        }
+        waitForReveal();
       }
     });
   }, { threshold: 0.3 });
   headers.forEach(function(h) {
-    h.setAttribute('data-text', h.textContent);
     h.textContent = '';
     obs.observe(h);
   });
